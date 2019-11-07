@@ -1,0 +1,72 @@
+
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="card">
+    <div class="card-header text-center">
+      <h1> Add details </h1>
+    </div>
+    <div class="card-body>">
+      <div class="container">
+        <form #userForm="ngForm" >
+            <div class="form-group">
+              <label >Name</label>
+              <input type="text" class="form-control" [(ngModel)]="name" placeholder="Enter Name" name="name" #userName="ngModel" required>
+              <span class="help-block" *ngIf="userName.errors?.required && userName.touched" style="color: tomato;">
+                   Name is required
+                </span>
+            </div>
+            <div class="form-group">
+              <label >Address</label>
+              <!-- <textarea type="text" class="form-control"  placeholder="Enter Address" cols="5"> -->
+                  <textarea name="address" id="" cols="5" rows="3" class="form-control" placeholder="Enter Address" [(ngModel)]="address" #addressArea="ngModel" required></textarea>
+                  <span class="help-block" *ngIf="addressArea.errors?.required && addressArea.touched" style="color: tomato;">
+                      Address is required
+                   </span>
+              </div>
+              <div class="form-group">
+                  <label >Pan No.</label>
+                  <input type="text" class="form-control" placeholder="Enter Pan" [(ngModel)]="pan" name="pan" #panNum="ngModel" required>
+                  <span class="help-block" *ngIf="panNum.errors?.required && panNum.touched" style="color: tomato;">
+                      Pan is required
+                   </span>
+
+                </div>
+                <div class="form-group">
+                    <label >Aadhar No.</label>
+                    <input type="number" class="form-control"  placeholder="Enter Aadhar No" [(ngModel)]="aadhar" name="aadhar" #aadharNum="ngModel" required>
+                    <span class="help-block" *ngIf="aadharNum.errors?.required && aadharNum.touched" style="color: tomato;">
+                        Aadhar is required
+                     </span>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label >Building No</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                            <select (change)="AddPersonData($event,i)" >
+                              <option [value] = "none">Select a building</option>
+                                <option  *ngFor="let x of result;let i=index" [value]="result[i].building_num" >  {{x.building_num}}</option>
+                              </select>
+
+                          </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <!-- <label >room no</label> -->
+                            <input type="text" class="form-control"  placeholder="Enter Room No" [(ngModel)]="room_num" name="room_num" #roomNum="ngModel" >
+                            <span class="help-block" *ngIf="roomNum.errors?.required && roomNum.touched" style="color: tomato;">
+                                Aadhar is required
+                             </span>
+
+                          </div>
+                    </div>
+                  </div>
+              <div class="form-group text-center">
+                  <button type="submit" class="btn btn-primary" (click)="AddData()" [disabled]="userForm.invalid">Submit</button>
+
+              </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>

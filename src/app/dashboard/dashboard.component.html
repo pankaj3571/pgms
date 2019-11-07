@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <button class="btn text-white bg-secondary mb-3" type="submit"  data-toggle="modal" data-target="#exampleModalCenter">AddBuilding</button>
+  </div>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-3" *ngFor="let x of result;let i = index">
+<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+
+    <div class="card-body" >
+      <!-- <h5 class="card-title">Building No.1</h5> -->
+      <p class="card-text text-center" (click)="click(i)" style="cursor: pointer">Building No.{{x.building_num}}</p>
+    </div>
+  </div>
+</div>
+
+
+</div>
+</div>
+<div class="modal fade "  id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" >
+      <div class="modal-content" >
+        <div class="modal-header" >
+          <h5 class="modal-title" id="exampleModalLongTitle" >Update Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="width:100%;">
+            <div class="card-body>">
+                <div class="container">
+                    <form #userForm="ngForm" >
+
+
+
+                              <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label >Building No</label>
+                                        <input type="number" class="form-control"  placeholder="Enter Building No" [(ngModel)]="building_num" name="building_num">
+
+                                      </div>
+                                </div>
+                                <!-- <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label >room no</label>
+                                        <input type="number" class="form-control"  placeholder="Enter Room No" [(ngModel)]="room_num" name="room_num">
+
+                                      </div>
+                                </div> -->
+                              </div>
+
+                          <div class="form-group text-center">
+
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <button type="submit" class="btn btn-primary" (click)="addBuilding()" >Submit</button>
+
+                          </div>
+
+                      </form>
+                  </div>
+              </div>
+
+            </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button"  class="btn btn-primary" (click)="update()" data-dismiss="modal">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>

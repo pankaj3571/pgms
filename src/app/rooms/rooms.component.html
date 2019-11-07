@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <button class="btn text-white bg-secondary mb-3" type="submit" (click)="addDetails()">AddDetails</button>
+  </div>
+<div class="container-fluid">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Pan No.</th>
+                <th scope="col">Aadhar No.</th>
+                <th scope="col">Building No</th>
+                <th scope="col">Room No</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let x of result;let i=index;">
+                <th scope="row" >{{i+1}}</th>
+                <td>{{x.name}}</td>
+                <td>{{x.address}}</td>
+                <td>{{x.pan}}</td>
+                <td>{{x.aadhar}}</td>
+                <td>{{x.building_num}}</td>
+                <td>{{x.room_num}}</td>
+                <td><i class="fa fa-edit" style="font-size:20px" data-toggle="modal" data-target="#exampleModalCenter" (click)="getData(i)" style="cursor: pointer;"></i> | <i class="fa fa-trash" style="font-size:20px" (click)="delete(i)"style="cursor: pointer;" ></i> </td>
+              </tr>
+
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<div class="modal fade "  id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" >
+      <div class="modal-content" >
+        <div class="modal-header" >
+          <h5 class="modal-title" id="exampleModalLongTitle" >Update Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="width:100%;">
+            <div class="card-body>">
+                <div class="container">
+                  <form>
+                      <div class="form-group">
+                        <label >Name</label>
+                        <input type="text" class="form-control" name="name" [(ngModel)]="name" placeholder="Enter Name">
+
+                      </div>
+                      <div class="form-group">
+                        <label >Address</label>
+                        <!-- <textarea type="text" class="form-control"  placeholder="Enter Address" cols="5"> -->
+                            <textarea name="address" id="" cols="5" rows="3" class="form-control" placeholder="Enter Address" name="address" [(ngModel)]="address"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label >Pan No.</label>
+                            <input type="text" class="form-control" placeholder="Enter Pan" name="pan" [(ngModel)]="pan">
+
+                          </div>
+                          <div class="form-group">
+                              <label >Aadhar No.</label>
+                              <input type="number" class="form-control"  placeholder="Enter Aadhar No" name="aadhar" [(ngModel)]="aadhar">
+
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                      <label >Building No</label>
+                                      <input type="text" class="form-control"  placeholder="Enter Building No" name="building_num" [(ngModel)]="building_num">
+
+                                    </div>
+                              </div>
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                      <label >room no</label>
+                                      <input type="text" class="form-control"  placeholder="Enter Room No" name="room_num" [(ngModel)]="room_num">
+
+                                    </div>
+                              </div>
+                            </div>
+
+                    </form>
+                  </div>
+              </div>
+
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button"  class="btn btn-primary" (click)="updateData()" data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
