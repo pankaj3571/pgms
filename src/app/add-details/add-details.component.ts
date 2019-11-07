@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CommonService} from  '../common-service/common.service'
+import {CommonService} from  '../common-service/common.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-details',
   templateUrl: './add-details.component.html',
@@ -18,7 +19,7 @@ export class AddDetailsComponent implements OnInit {
         resultArray:any=[];
          id: any;
          selectedvalue:any
-  constructor(private commonService:CommonService) { }
+  constructor(private commonService:CommonService,private toastr:ToastrService) { }
 
   ngOnInit() {
     this.getBuilding();
@@ -59,7 +60,9 @@ export class AddDetailsComponent implements OnInit {
     }
     console.log(obj,"object=====")
     this.commonService.AddDetails(obj).subscribe(data=>{
-      console.log(data);
+      if(data['success']==true){
+        this.toastr.success('Person Add Successfully')
+      }
     })
   }
 }

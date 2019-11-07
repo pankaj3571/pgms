@@ -10,7 +10,11 @@ import{RouterModule} from '@angular/router';
 import { AddDetailsComponent } from './add-details/add-details.component';
 import {CommonService} from './common-service/common.service'
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +28,10 @@ import { HttpClientModule } from '@angular/common/http'
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [CommonService],
   bootstrap: [AppComponent]

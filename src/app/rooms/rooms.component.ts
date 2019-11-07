@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {CommonService} from '../common-service/common.service'
+import {CommonService} from '../common-service/common.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
@@ -17,7 +18,7 @@ export class RoomsComponent implements OnInit {
   aadhar:any;
   building_num:any;
   room_num:any;
-  constructor(private router:Router,private service:CommonService) { }
+  constructor(private router:Router,private service:CommonService,private toastr:ToastrService) { }
 
   ngOnInit() {
     this.getDetails();
@@ -63,9 +64,14 @@ export class RoomsComponent implements OnInit {
   console.log(obj,"object")
   if(obj._id === sessionStorage.getItem("object_id")){
     this.service.updateData(obj).subscribe(data=>{
-
-      console.log(data,"update")
+      console.log(data)
+      if(data['status']=='success'){
+        this.toastr.success('Data Update SuccessFully');
         this.getDetails();
+      }
+        else{
+          this.toastr.error('Something went wrong')
+        }
       })
   }
 
@@ -79,8 +85,16 @@ export class RoomsComponent implements OnInit {
        _id:this.id
      }
      this.service.deleteData(obj).subscribe(data=>{
-      console.log(data,"data");
+console.log(data)
+     if(data['status']=='success'){
+      this.toastr.success('Delete SuccessFully');
       this.getDetails();
+     }
+     else{
+       this.toastr.error('Something went wrong')
+     }
+
+
      })
   }
 }

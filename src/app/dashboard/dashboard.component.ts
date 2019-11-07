@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
 import {CommonService} from '../common-service/common.service'
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,7 +16,7 @@ export class DashboardComponent implements OnInit {
   selectedIndex:number=-1;
   resultArray:any=[];
   id: any;
-  constructor(private router:Router,private service:CommonService) { }
+  constructor(private router:Router,private service:CommonService,private toastr:ToastrService) { }
 
   ngOnInit() {
     this.getBuildings();
@@ -41,14 +42,28 @@ addBuilding(){
     room_num:this.room_num
   }
   this.service.AddBuilding(obj).subscribe(data=>{
-    this.getBuildings();
+    if(data['success']==true){
+      this.toastr.success('Building number added successfully')
+      this.getBuildings();
+    }
+    else{
+      this.toastr.warning(data['message'])
+    }
+
+
       console.log(data,"object=======")
   })
 }
 getBuildings(){
+let message
   this.service.getBuildings().subscribe(data=>{
+
     this.result=data['result'];
-    console.log(this.result,"=====")
+    if(this.result==''){
+    this.toastr.info('Add Building Number')
+    }
+
+
   })
 }
 }
