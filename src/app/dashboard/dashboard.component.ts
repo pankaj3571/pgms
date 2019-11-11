@@ -29,6 +29,7 @@ click(index:number){
    this.id=selectedRow._id;
    window.sessionStorage.clear();
    window.sessionStorage.setItem('object_id',this.id);
+   window.sessionStorage.setItem('build_id',selectedRow.building_num)
 
   if(this.id !=null){
 

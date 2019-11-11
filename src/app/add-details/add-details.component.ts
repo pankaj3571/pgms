@@ -19,6 +19,7 @@ export class AddDetailsComponent implements OnInit {
         resultArray:any=[];
          id: any;
          selectedvalue:any
+         build_no:any;
   constructor(private commonService:CommonService,private toastr:ToastrService) { }
 
   ngOnInit() {
@@ -27,9 +28,18 @@ export class AddDetailsComponent implements OnInit {
 
 
   getBuilding(){
+    this.build_no=
     this.commonService.getBuildings().subscribe(data=>{
       this.result=data['result']
+      .filter(function(x){
+
+       return x.building_num == window.sessionStorage.getItem("build_id")
+      })
+      console.log(this.result,"result")
+      console.log(this.result.building_num,"result")
+
     })
+
   }
   AddPersonData(event:any,index:number){
     console.log('result', this.result);
@@ -38,7 +48,10 @@ export class AddDetailsComponent implements OnInit {
     // onsole.log(this.selectedvalue,"seectedValue===")
     this.selectedIndex = this.selectedvalue;
     console.log(this.selectedIndex,"index=====")
-    var selectedRow = this.result[this.selectedvalue - 1];
+    var selectedRow = this.result[0]
+    // [this.selectedvalue - 1];
+    console.log(selectedRow,"id=======")
+
      this.id=selectedRow._id;
      console.log(this.id,"id=======")
   //   if(this.id !=null){
